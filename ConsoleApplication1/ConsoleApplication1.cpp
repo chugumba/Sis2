@@ -19,7 +19,7 @@ public:
         double temp = 0;
         for (double a : v)
             temp += (a - m) * (a - m);
-        return temp / v.size();
+        return temp / (v.size()-1);
     }
 
     double monteCarlo() {
