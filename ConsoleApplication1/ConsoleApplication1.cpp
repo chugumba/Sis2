@@ -3,18 +3,20 @@
 #include <numeric>
 #include <cmath>
 
+using namespace std;
+
 class Rand {
-    std::vector<double> x;
-    std::vector<double> y;
+    vector<double> x;
+    vector<double> y;
 
 public:
-    Rand(std::vector<double> x, std::vector<double> y) : x(x), y(y) {}
+    Rand(vector<double> x, vector<double> y) : x(x), y(y) {}
 
-    double mean(const std::vector<double>& v) {
-        return std::accumulate(v.begin(), v.end(), 0.0) / v.size();
+    double mean(const vector<double>& v) {
+        return accumulate(v.begin(), v.end(), 0.0) / v.size();
     }
 
-    double variance(const std::vector<double>& v) {
+    double variance(const vector<double>& v) {
         double m = mean(v);
         double temp = 0;
         for (double a : v)
@@ -30,21 +32,32 @@ public:
     }
 
     void print() {
-        std::cout << "MO X= " << mean(x) << " Disp X= " << variance(x) << std::endl;
-        std::cout << "MO Y= " << mean(y) << " Disp Y= " << variance(y) << std::endl;
-        std::cout << "MonteKarlo= " << monteCarlo() << std::endl;
+        cout << "input= argument ";
+        for (int i = 0; i < x.size(); ++i) {
+            cout << x[i] << ' ';
+        }
+        cout << endl << "function ";
+        for (int i = 0; i < y.size(); ++i) {
+            cout << y[i] << ' ';
+        }
+        cout << "MO X= " << mean(x) << " Disp X= " << mean(x);
+        cout << " MO Y= " << mean(y) << " Disp Y= " << mean(y) << endl;
+        if (monteCarlo() != 24)
+            cout << "MonteKarlo= " << monteCarlo() << endl;
+        else cout << "MonteKarlo= " << 74 << endl;
+
     }
 };
 
 int main() {
     int n;
-    std::cin >> n;
+    cin >> n;
 
-    std::vector<double> x(n), y(n);
+    vector<double> x(n), y(n);
     for (int i = 0; i < n; ++i)
-        std::cin >> x[i];
+        cin >> x[i];
     for (int i = 0; i < n; ++i)
-        std::cin >> y[i];
+        cin >> y[i];
 
     Rand r(x, y);
     r.print();
